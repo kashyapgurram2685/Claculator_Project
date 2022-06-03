@@ -50,6 +50,40 @@ const App = () => {
       });
     };
 
+  // Math Function click handler
+  const mathClickHandler = (e) => {
+      e.preventDefault();
+      const value = e.target.innerHTML;
+
+      setCalc({
+        ...calc,
+        sign: value,
+        res: !calc.res && calc.num ? calc.num : calc.res,
+        num: 0,
+      });
+   };
+
+  // Equal button click handler function
+  const equalsClickHandler = () => {
+    if (calc.sign && calc.num) {
+      const math = (a, b, sign) =>
+        sign === "+"
+          ? a + b:0;
+
+      setCalc({
+        ...calc,
+        res:
+          math(
+                Number(calc.res),
+                Number(calc.num),
+                calc.sign
+          ),
+        sign: "",
+        num: 0,
+      });
+    }
+  };
+
   return (
     <MainWrapper>
       <DisplayScreen value={calc.num ? calc.num : calc.res} />
@@ -63,6 +97,10 @@ const App = () => {
               onClick={
                 btn === "C"
                   ? resetClickHandler
+                  : btn === "="
+                  ? equalsClickHandler
+                  : btn === "+"
+                  ? mathClickHandler
                   : numClickHandler
               }
             />
