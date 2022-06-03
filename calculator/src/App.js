@@ -8,6 +8,13 @@ import Button from "./components/Button";
 import React, { useState } from "react";
 
 const App = () => {
+  // Var to set State Values
+  let [calc, setCalc] = useState({
+    sign: "",
+    num: 0,
+    res: 0,
+  });
+
   // Calculator display screen button array
   const buttonValues = [
       [7, 8, 9, "C"],
@@ -16,9 +23,26 @@ const App = () => {
       ["="],
   ];
 
+  // Number button click handler function
+  const numClickHandler = (e) => {
+    e.preventDefault();
+    const value = e.target.innerHTML;
+
+    setCalc({
+        ...calc,
+        num:
+          calc.num === 0 && value === "0"
+            ? "0"
+            : calc.num % 1 === 0
+            ? Number(calc.num + value)
+            : calc.num + value,
+        res: !calc.sign ? 0 : calc.res,
+      });
+  };
+
   return (
     <MainWrapper>
-      <DisplayScreen value={0} />
+      <DisplayScreen value={calc.num ? calc.num : calc.res} />
       <ButtonWrapper>
         {buttonValues.flat().map((btn, i) => {
           return (
@@ -27,7 +51,7 @@ const App = () => {
               className={btn === "=" ? "equals" : ""}
               value={btn}
               onClick={
-                console.log("button clicked")
+                numClickHandler
               }
             />
           );
