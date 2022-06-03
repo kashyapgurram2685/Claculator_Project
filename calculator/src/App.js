@@ -54,11 +54,19 @@ const App = () => {
   const mathClickHandler = (e) => {
       e.preventDefault();
       const value = e.target.innerHTML;
+      
+    console.log ("value "+value);
+    console.log("res "+calc.res);
+    console.log("sign "+calc.sign);
+
+    const sumup = (a, b, sign) =>
+        sign === "+"
+          ? a + b:0;
 
       setCalc({
         ...calc,
         sign: value,
-        res: !calc.res && calc.num ? calc.num : calc.res,
+        res: sumup(calc.res, calc.num, "+"),
         num: 0,
       });
    };
