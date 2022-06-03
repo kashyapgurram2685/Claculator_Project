@@ -55,9 +55,9 @@ const App = () => {
       e.preventDefault();
       const value = e.target.innerHTML;
       
-    console.log ("value "+value);
-    console.log("res "+calc.res);
-    console.log("sign "+calc.sign);
+    //console.log ("value "+value);
+    //console.log("res "+calc.res);
+    //console.log("sign "+calc.sign);
 
     const sumup = (a, b, sign) =>
         sign === "+"
