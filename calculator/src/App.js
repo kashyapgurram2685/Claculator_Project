@@ -5,11 +5,15 @@ import DisplayScreen from "./components/DisplayScreen";
 import ButtonWrapper from "./components/ButtonWrapper";
 import Button from "./components/Button";
 
-const App = () => {
+import React, { useState } from "react";
 
+const App = () => {
   // Calculator display screen button array
   const buttonValues = [
-      [1],
+      [7, 8, 9, "C"],
+      [4, 5, 6, "+"],
+      [1, 2, 3, 0],
+      ["="],
   ];
 
   return (
@@ -20,7 +24,7 @@ const App = () => {
           return (
             <Button
               key={i}
-              className={""}
+              className={btn === "=" ? "equals" : ""}
               value={btn}
               onClick={
                 console.log("button clicked")
@@ -34,3 +38,4 @@ const App = () => {
 };
 
 export default App;
+
