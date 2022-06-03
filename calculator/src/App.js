@@ -40,6 +40,16 @@ const App = () => {
       });
   };
 
+  // Reset button click handler function
+  const resetClickHandler = () => {
+      setCalc({
+        ...calc,
+        sign: "",
+        num: 0,
+        res: 0,
+      });
+    };
+
   return (
     <MainWrapper>
       <DisplayScreen value={calc.num ? calc.num : calc.res} />
@@ -51,7 +61,9 @@ const App = () => {
               className={btn === "=" ? "equals" : ""}
               value={btn}
               onClick={
-                numClickHandler
+                btn === "C"
+                  ? resetClickHandler
+                  : numClickHandler
               }
             />
           );
